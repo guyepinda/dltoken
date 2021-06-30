@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>QnA Test Bot Direct Line</title>
+	<script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+	 <style>
+      html,
+      body {
+        background-color: #f7f7f7;
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      #webchat {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        margin: auto;
+        max-width: 480px;
+        min-width: 360px;
+      }
+    </style>
+</head>
+<body>
+    <h1>QnA Test Bot By Guy Angouma</h1>
+    <h3>Integrating bot into a Web</h3>
+    <br />
+   	<div id="webchat" role="main"></div>
+    <script>
+      (async function() {
+        <!-- NOTE: It is highly recommended to replace the below fetch with a call to your own token service as described in step 2 above, and to avoid exposing your channel secret in client side code. -->
+        const res = await fetch('https://directline.botframework.com/v3/directline/tokens/generate', { 
+		method: 'POST', 
+		headers:{'Authorization':'Bearer ' + '0cT-qOk5do0.qsfXK4SI0bbVNeVLDfZL2cKxaj1m7gsPkABRgyfrH3A',
+		'Content-type': 'application/json'
+		}
+		<!-- , -->
+		<!-- body: JSON.stringify({ user: { id: 'dl_v3nu5_id', name: 'Potos' }}) -->
+	  });
+        const { token } = await res.json();
+
+        window.WebChat.renderWebChat(
+          {
+            directLine: await window.WebChat.createDirectLineAppServiceExtension({token})
+          },
+          document.getElementById('webchat')
+        );
+
+        document.querySelector('#webchat > *').focus();
+      })().catch(err => console.error(err));
+    </script>
+</body>
+</html>
