@@ -24,8 +24,7 @@
     <div id="webchat" role="main"></div>
         <script>
           (async function() {
-             const res = await fetch('https://chatmasukbotan.azurewebsites.net/api/token', { method: 'POST',
-                                                                                           headers:{'Content-type': 'application/json'}});
+             const res = await fetch('https://chatmasukbotan.azurewebsites.net/api/token', { method: 'POST'});
             const { token } = await res.json();
             
             window.WebChat.renderWebChat(
